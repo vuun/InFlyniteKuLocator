@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.content.Intent;
 
 public class MyActivity extends AppCompatActivity {
 
@@ -33,5 +35,35 @@ public class MyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /** Called when the user clicks the Send button */
+
+    public void sendToAccount(View view) {
+        // Do something in response to button
+
+//        open when created SendAccountActivity class
+//        Intent intent = new Intent(this, SendAccountActivity.class);
+//        startActivity(intent);
+    }
+
+    /** Called when the user clicks the Send button */
+    public void sendToMap(View view) {
+        // Do something in response to button
+
+//        open when created SendMapActivity class
+//        Intent intent = new Intent(this, SendMapActivity.class);
+//        startActivity(intent);
+    }
+
+    /** Called when the user clicks the Send button */
+    public void sendToSearch(View view) {
+        // Do something in response to button
+
+
+//        open when created SendSearchActivity class
+//        Intent intent = new Intent(this, SendSearchActivity.class);
+//        startActivity(intent);
+        
     }
 }
