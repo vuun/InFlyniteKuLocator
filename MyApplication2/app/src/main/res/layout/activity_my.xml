@@ -38,36 +38,55 @@
         android:layout_alignParentEnd="true" />
 -->
 
-    <ImageButton
-        android:id="@+id/accountButton"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:scaleType="fitCenter"
-        android:background="@mipmap/icon_account"
-        android:onClick="sendToAccount"
-        android:layout_alignParentTop="true"
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/accountButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/searchButton"
-        android:background="@mipmap/icon_search"
-        android:onClick="sendToSearch"
-        android:layout_gravity="bottom"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/mapButton"
-        android:background="@mipmap/icon_map"
-        android:onClick="sendToMap"
-        android:layout_gravity="center_vertical"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/accountButton"
-        android:layout_alignEnd="@+id/accountButton" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:id="@+id/accountButton"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:scaleType="fitCenter"
+            android:background="@mipmap/icon_account"
+            android:onClick="sendToAccount"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/mapButton"
+            android:background="@mipmap/icon_map"
+            android:onClick="sendToMap"
+            android:layout_gravity="center_vertical"
+            android:layout_alignTop="@+id/accountButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_row="2"
+            android:layout_column="0" />
+
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/searchButton"
+            android:background="@mipmap/icon_search"
+            android:onClick="sendToSearch"
+            android:layout_gravity="bottom"
+            android:layout_alignTop="@+id/accountButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_row="1"
+            android:layout_column="2" />
+
+    </GridLayout>
+
 </RelativeLayout>

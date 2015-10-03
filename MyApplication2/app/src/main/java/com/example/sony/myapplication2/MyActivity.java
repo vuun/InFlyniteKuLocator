@@ -15,19 +15,20 @@ import android.widget.Toast;
 
 public class MyActivity extends AppCompatActivity {
 
-  //  Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-  //  int screen_width = dp.getWidth();
- //   int screen_height = dp.getHeight();
+//    Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+//    int screen_width = dp.getWidth();
+//    int screen_height = dp.getHeight();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  ImageButton butt1 = (ImageButton) findViewById(R.id.accountButton);
+        setContentView(R.layout.activity_my);
+ //       ImageButton butt1 = (ImageButton) findViewById(R.id.accountButton);
        // ImageButton butt2 = (ImageButton) findViewById(R.id.mapButton);
        // ImageButton butt3 = (ImageButton) findViewById(R.id.searchButton);
-       // resize(butt1);
+   //      resize(butt1);
        // resize(butt2);
        // resize(butt3);
-        setContentView(R.layout.activity_my);
     }
 
 //    @Override
@@ -51,7 +52,7 @@ public class MyActivity extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
-
+//
 //    public void resize(View view) {
 //        ImageButton butt1 = (ImageButton) view;
 //
