@@ -10,9 +10,5 @@
         <!-- The rest of your attributes -->
     </style>
 
-    <style name="NoTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-    </style>
-
 
 </resources>

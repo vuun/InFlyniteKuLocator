@@ -1,10 +1,12 @@
 package com.example.vuun.description;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +14,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void sendActSearch(View view)
+    {
+        // Do something in response to button
+       // go to MainActivitySearch
+        Intent intent = new Intent(this, MainActivitySearch.class);
+        startActivity(intent);
     }
 
 //
@@ -38,3 +48,4 @@ public class MainActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 }
+
