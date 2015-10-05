@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Description</string>
+    <string name="app_name">TestDescnSearch</string>
+    <string name="act_name_desc">Description</string>
+    <string name="act_name_search">Search</string>
     <string name="action_search"> </string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

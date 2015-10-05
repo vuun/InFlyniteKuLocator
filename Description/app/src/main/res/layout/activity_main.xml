@@ -35,8 +35,8 @@
 
         <ImageButton
             android:id="@+id/searchImageButton"
-            android:layout_width="161dp"
-            android:layout_height="61dp"
+            android:layout_width="152dp"
+            android:layout_height="57dp"
             android:src="@drawable/buttonfav"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -45,11 +45,13 @@
             android:cropToPadding="false"
             android:background="#00000000"
             android:scaleType="fitXY"
+            android:onClick="sendActSearch"
             />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/ImageRelative">
 
             <ImageView
                 android:layout_width="99dp"
