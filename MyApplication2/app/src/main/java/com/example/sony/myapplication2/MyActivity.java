@@ -15,17 +15,19 @@ import android.widget.Toast;
 
 public class MyActivity extends AppCompatActivity {
 
-//    Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-//    int screen_width = dp.getWidth();
-//    int screen_height = dp.getHeight();
+    Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    int screen_width = dp.getWidth();
+    int screen_height = dp.getHeight();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
- //       ImageButton butt1 = (ImageButton) findViewById(R.id.accountButton);
-       // ImageButton butt2 = (ImageButton) findViewById(R.id.mapButton);
-       // ImageButton butt3 = (ImageButton) findViewById(R.id.searchButton);
+        ImageButton butt1 = (ImageButton) findViewById(R.id.accountButton);
+        ImageButton butt2 = (ImageButton) findViewById(R.id.mapButton);
+        ImageButton butt3 = (ImageButton) findViewById(R.id.searchButton);
+        butt1.setScaleX(screen_width/5);
+        butt1.setScaleY(screen_height/5);
    //      resize(butt1);
        // resize(butt2);
        // resize(butt3);

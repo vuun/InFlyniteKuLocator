@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
 
         <!-- Set AppCompat’s color theming attrs -->
@@ -9,6 +10,11 @@
         <!-- The rest of your attributes -->
     </style>
 
+    <style name="NoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Set AppCompat’s color theming attrs -->
+
+    </style>
 
 
 </resources>
