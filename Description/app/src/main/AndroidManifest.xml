@@ -10,18 +10,36 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme"
-            android:label="@string/act_name_desc" >
+            android:label="@string/act_name_desc"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".MainActivitySearch"
+            android:theme="@style/AppTheme"
+            android:label="@string/act_name_search"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".MenuActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/act_name_menu"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".LogoActivity"
+            android:theme="@style/NoTheme"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivitySearch"
-            android:theme="@style/AppTheme"
-            android:label="@string/act_name_search" >
-        </activity>
     </application>
 
 </manifest>

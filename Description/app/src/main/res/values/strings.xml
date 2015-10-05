@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">TestDescnSearch</string>
+    <string name="app_name">KULocator</string>
     <string name="act_name_desc">Description</string>
     <string name="act_name_search">Search</string>
+    <string name="act_name_menu">Menu</string>
+    <string name="act_name_logo">logo</string>
     <string name="action_search"> </string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
