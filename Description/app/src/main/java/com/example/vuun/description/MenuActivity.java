@@ -1,6 +1,7 @@
 package com.example.vuun.description;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
@@ -9,10 +10,10 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 
 public class MenuActivity extends AppCompatActivity {
-
-    Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-    int screen_width = dp.getWidth();
-    int screen_height = dp.getHeight();
+//
+//    Display dp = ((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+//    int screen_width = dp.getWidth();
+//    int screen_height = dp.getHeight();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +66,8 @@ public class MenuActivity extends AppCompatActivity {
         // Do something in response to button
 
 //        open when created SendAccountActivity class
-//        Intent intent = new Intent(this, SendAccountActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
     }
 
     /** Called when the user clicks the Send button */
@@ -87,16 +88,14 @@ public class MenuActivity extends AppCompatActivity {
 //        open when created SendMapActivity class
 //        Intent intent = new Intent(this, SendMapActivity.class);
 //        startActivity(intent);
+        Intent intent = new Intent(this, DescActivity.class);
+        startActivity(intent);
+
     }
 
     /** Called when the user clicks the Send button */
     public void sendToSearch(View view) {
-        // Do something in response to button
-
-
-//        open when created SendSearchActivity class
-//        Intent intent = new Intent(this, SendSearchActivity.class);
-//        startActivity(intent);
-
+        Intent intent = new Intent(this, MainActivitySearch.class);
+        startActivity(intent);
     }
 }

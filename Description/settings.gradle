@@ -1,1 +1,1 @@
-include ':app', ':searchact'
+include ':app'

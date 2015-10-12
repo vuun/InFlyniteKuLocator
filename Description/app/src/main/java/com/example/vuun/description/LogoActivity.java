@@ -23,7 +23,7 @@ public class LogoActivity extends AppCompatActivity {
                 Intent sendToMenu = new Intent(getApplicationContext(), MenuActivity.class);
                 startActivity(sendToMenu);
             }
-        },5000);
+        },1000);
 
  /*       Thread thread = new Thread() {
             @Override
