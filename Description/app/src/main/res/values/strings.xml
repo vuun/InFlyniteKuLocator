@@ -4,7 +4,29 @@
     <string name="act_name_search">Search</string>
     <string name="act_name_menu">Menu</string>
     <string name="act_name_logo">logo</string>
-    <string name="action_search"> </string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_all">ALL</string>
+    <string name="nav_item_toilet">TOILET</string>
+    <string name="nav_item_store">STORE</string>
+    <string name="nav_item_document">DOCUMENT</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_all</item>
+        <item>@string/nav_item_toilet</item>
+        <item>@string/nav_item_store</item>
+        <item>@string/nav_item_document</item>
+    </string-array>
+
+    <string name="title_messages">STORE</string>
+    <string name="title_friends">TOILET</string>
+    <string name="title_home">ALL</string>
+    <string name="title_document">DOCCUMENT</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

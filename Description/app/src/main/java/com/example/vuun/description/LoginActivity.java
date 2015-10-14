@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-
+    int checkLog = 0;
     Button registerHere;
     Button signIn;
     TextInputLayout emailLogin;
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         //initializing toolbar
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolBar);
+//        setSupportActionBar(toolBar);
         //initializing views
         registerHere=(Button)findViewById(R.id.registerhere_button);
         signIn=(Button)findViewById(R.id.signin_button);
@@ -97,7 +98,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String userId= jObj.getString("uid");
+                    Log.d("WHAT",userId);
                     if (userId!=null) {
+                        checkLog = 0;
                         // user successfully logged in
                         // Create login session
                         session.setLogin(true);
@@ -106,14 +109,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Intent intent = new Intent(LoginActivity.this,
                                 AccountActivity.class);
                         startActivity(intent);
+
                         finish();
                     } else {
                         // login error
+                        checkLog = 1;
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
                                 errorMsg, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
+
                     e.printStackTrace();
                 }
 
@@ -184,9 +190,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
                     // login user
                     checkLogin(email, password);
-                } else {
+                    if(checkLog == 1){
+                     Snackbar.make(v, "Wrong Email or Password", Snackbar.LENGTH_LONG)
+                            .show();
+                    }
+                } else if(email.trim().length() > 0 && password.trim().length() == 0){
                     // show snackbar to enter credentials
-                    Snackbar.make(v, "Please enter the credentials!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(v, "Please enter Password", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+                else if(email.trim().length() == 0 && password.trim().length() > 0){
+                    // show snackbar to enter credentials
+                    Snackbar.make(v, "Please enter Email", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+                else {
+                    // show snackbar to enter credentials
+                    Snackbar.make(v, "Please enter Email and Password", Snackbar.LENGTH_LONG)
                             .show();
                 }
                 break;

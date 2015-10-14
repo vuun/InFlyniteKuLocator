@@ -66,7 +66,7 @@ public class MenuActivity extends AppCompatActivity {
         // Do something in response to button
 
 //        open when created SendAccountActivity class
-        Intent intent = new Intent(this, AccountActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -88,7 +88,7 @@ public class MenuActivity extends AppCompatActivity {
 //        open when created SendMapActivity class
 //        Intent intent = new Intent(this, SendMapActivity.class);
 //        startActivity(intent);
-        Intent intent = new Intent(this, DescActivity.class);
+        Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
 
     }
