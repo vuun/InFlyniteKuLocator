@@ -29,4 +29,5 @@
     <string name="title_home">ALL</string>
     <string name="title_document">DOCCUMENT</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

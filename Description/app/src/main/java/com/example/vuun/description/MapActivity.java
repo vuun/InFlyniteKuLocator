@@ -27,7 +27,7 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desc);
+        setContentView(R.layout.activity_map);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,7 +46,7 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_map, menu);
         return true;
     }
 
