@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">KULocator</string>
     <string name="act_name_desc">Description</string>
+    <string name="act_name_log">Login</string>
+    <string name="act_name_acc">Account</string>
+    <string name="act_name_fav">Favorite</string>
+    <string name="act_name_reg">Register</string>
     <string name="act_name_search">Search</string>
     <string name="act_name_menu">Menu</string>
     <string name="act_name_logo">logo</string>

@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         //setting toolbar
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolBar);
+        setSupportActionBar(toolBar);
 
         tvLogin.setOnClickListener(this);
         registerButton.setOnClickListener(this);

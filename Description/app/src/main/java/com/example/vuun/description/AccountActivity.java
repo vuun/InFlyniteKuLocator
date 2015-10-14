@@ -16,6 +16,7 @@ public class AccountActivity extends AppCompatActivity {
     TextView txtName;
     TextView txtEmail;
     Button btnLogout;
+    Button btnFav;
 
     private SessionManager session;
 
@@ -27,9 +28,11 @@ public class AccountActivity extends AppCompatActivity {
         txtName = (TextView) findViewById(R.id.name);
         txtEmail = (TextView) findViewById(R.id.email);
         btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnFav = (Button) findViewById(R.id.btnFav);
+
         //setting toolbar
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolBar);
+        setSupportActionBar(toolBar);
 
 
         session = new SessionManager(getApplicationContext());
@@ -59,5 +62,10 @@ public class AccountActivity extends AppCompatActivity {
         Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void sendtoFav() {
+        Intent intent = new Intent(AccountActivity.this, FavActivity.class);
+        startActivity(intent);
     }
 }

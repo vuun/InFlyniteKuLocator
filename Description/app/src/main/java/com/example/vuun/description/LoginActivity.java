@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         //initializing toolbar
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolBar);
+        setSupportActionBar(toolBar);
         //initializing views
         registerHere=(Button)findViewById(R.id.registerhere_button);
         signIn=(Button)findViewById(R.id.signin_button);
