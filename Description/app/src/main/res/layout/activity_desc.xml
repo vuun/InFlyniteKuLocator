@@ -45,7 +45,7 @@
             android:cropToPadding="false"
             android:background="#00000000"
             android:scaleType="fitXY"
-            android:onClick="sendActSearch"
+            android:onClick="sendActFav"
             />
 
         <RelativeLayout
@@ -99,17 +99,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="141dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="example"
-                android:id="@+id/textView"
-                android:layout_alignParentTop="true"
+                android:text="PlaceDesc"
+                android:id="@+id/PlaceDesc"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_above="@+id/imageView2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PlaceName"
+                android:id="@+id/PlaceName"
+                android:layout_above="@+id/PlaceDesc"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
         </RelativeLayout>
 
     </FrameLayout>
-
-
 
 
 </RelativeLayout>

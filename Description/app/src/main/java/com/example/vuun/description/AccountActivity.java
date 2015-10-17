@@ -47,6 +47,13 @@ public class AccountActivity extends AppCompatActivity {
         txtEmail.setText(email);
 
 
+        btnFav.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                sendtoFav();
+            }
+        });
         btnLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -28,14 +28,18 @@ public class MainActivitySearch extends AppCompatActivity {
     private void initData() {
         catList = new ArrayList<Category>();
 
-        Category cat1 = createCategory("Games", "Game for console", 1);
-        cat1.setItemList(createItems("Game Item", "This is the game n.", 5));
+        Category cat1 = createCategory("   Stationary Store", "", 1);
+        cat1.setItemList(createItems("Store", "x", 5));
 
-        Category cat2 = createCategory("Mobile Phone", "All the mobile phone", 2);
-        cat2.setItemList(createItems("Phone Item", "This is the phone n.", 5));
+        Category cat2 = createCategory("   Toilet", "", 2);
+        cat2.setItemList(createItems("Toilet", "x", 5));
+
+        Category cat3 = createCategory("   COPY SHOP", "", 3);
+        cat3.setItemList(createItems("Shop", "x", 5));
 
         catList.add(cat1);
         catList.add(cat2);
+        catList.add(cat3);
     }
 
     private Category createCategory(String name, String descr, long id) {
@@ -47,7 +51,7 @@ public class MainActivitySearch extends AppCompatActivity {
         List<ItemDetail> result = new ArrayList<ItemDetail>();
 
         for (int i=0; i < num; i++) {
-            ItemDetail item = new ItemDetail(i, 0, "item" + i, "Descr" + i);
+            ItemDetail item = new ItemDetail(i, 0, name + i, descr + i);
             result.add(item);
         }
 
