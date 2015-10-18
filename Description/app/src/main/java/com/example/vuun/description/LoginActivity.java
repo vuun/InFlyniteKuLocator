@@ -98,9 +98,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String userId= jObj.getString("uid");
-                    Log.d("WHAT",userId);
+
                     if (userId!=null) {
-                        checkLog = 0;
                         // user successfully logged in
                         // Create login session
                         session.setLogin(true);
@@ -109,11 +108,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Intent intent = new Intent(LoginActivity.this,
                                 AccountActivity.class);
                         startActivity(intent);
-
                         finish();
                     } else {
                         // login error
-                        checkLog = 1;
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(),
                                 errorMsg, Toast.LENGTH_LONG).show();
@@ -211,5 +208,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Toast.makeText(getApplicationContext(), "Go back to MainMenu", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

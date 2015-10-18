@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,5 +109,12 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
             // set the maptoolbar title
             getSupportActionBar().setTitle(title);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Toast.makeText(getApplicationContext(), "Go back to MainMenu", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

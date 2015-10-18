@@ -64,7 +64,7 @@ public class MainActivitySearch extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
-        Toast.makeText(getApplicationContext(), "Closed Search page", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Go back to MainMenu", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

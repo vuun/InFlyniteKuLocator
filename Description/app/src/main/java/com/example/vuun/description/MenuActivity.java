@@ -119,7 +119,7 @@ public class MenuActivity extends AppCompatActivity {
         alertDialog.setNegativeButton("No", null);
 
         alertDialog.setMessage("Do you want to exit?");
-        alertDialog.setTitle("Caution!");
+
         alertDialog.show();
     }
 
