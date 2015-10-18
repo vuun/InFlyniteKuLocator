@@ -11,6 +11,8 @@ public class SessionManager {
     // Shared preferences file name
     private static final String PREF_NAME = "AndroidSources";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_EMAIL = "email";
 
     // Shared Preferences
     SharedPreferences pref;
@@ -32,6 +34,24 @@ public class SessionManager {
         // commit changes
         editor.commit();
     }
+
+    public void setUsername(String username) {
+        editor.putString(KEY_USERNAME, username);
+        // commit changes
+        editor.commit();
+    }
+    public void setEmail(String email) {
+        editor.putString(KEY_EMAIL, email);
+        // commit changes
+        editor.commit();
+    }
+    public String getUsername() {
+        return pref.getString(KEY_USERNAME,"");
+    }
+    public String getEmail() {
+        return pref.getString(KEY_EMAIL,"");
+    }
+
 
     public boolean isLoggedIn() {
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);
