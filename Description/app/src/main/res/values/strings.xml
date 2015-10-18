@@ -23,8 +23,8 @@
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
         <item>@string/nav_item_all</item>
-        <item>@string/nav_item_toilet</item>
         <item>@string/nav_item_store</item>
+        <item>@string/nav_item_toilet</item>
         <item>@string/nav_item_document</item>
     </string-array>
 
