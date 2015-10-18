@@ -218,4 +218,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Toast.makeText(getApplicationContext(), "Go back to MainMenu", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }
