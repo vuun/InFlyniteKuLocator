@@ -3,6 +3,8 @@ package com.example.vuun.description.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +17,25 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 /**
  * Created by Teevarapat on 10/7/2015.
  */
-public class Toilet_Fragment extends Fragment {
+public class Toilet_Fragment extends Fragment implements GoogleMap.OnInfoWindowClickListener{
 
     MapView mapView;
     GoogleMap map;
     LatLng position;
 
-    private final LatLng Toilet_computer = new LatLng(13.8461058, 100.5686874);
-    private final LatLng Toilet_chem1 = new LatLng(13.8459238, 100.56988);
-    private final LatLng Toilet_chem2  = new LatLng(13.8459236, 100.569877);
-    private final LatLng Toilet_IUP = new LatLng(13.8459254, 100.5698766);
-    private final LatLng Toilet_chochard = new LatLng(13.8472256, 100.5703862);
-    private final LatLng Toilet_Yotha = new LatLng(13.8456741, 100.5690166);
-
+    String[] name_toilet = new String[]{"ห้องน้ำ ภาควิชาวิศวกรรมคอมพิวเตอร์", "ห้องน้ำ ภาควิชาวิศวกรรมเคมี(ข้างร้านถ่ายเอกสาร)", "ห้องน้ำ ภาควิชาวิศวกรรมเคมี(ใต้ห้องสโม)",
+            "ห้องน้ำ IUP", "ห้องน้ำ อาคารชูชาติ", "ห้องน้ำ ภาควิชาวิศวกรรมโยธา"};
+    double[] latitude = new double[]{13.8461058, 13.8459238, 13.8459236, 13.8459254, 13.8472256, 13.8456741};
+    double[] longitude = new double[]{100.5686874, 100.56988, 100.569877, 100.5698766, 100.5703862, 100.5690166};
+    private ArrayList<Marker> markers = new ArrayList<Marker>();
 
     public Toilet_Fragment() {
 
@@ -48,6 +51,7 @@ public class Toilet_Fragment extends Fragment {
 
         // Gets to GoogleMap from the MapView and does initialization stuff
         map = mapView.getMap();
+        map.setOnInfoWindowClickListener(this);
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.getUiSettings().setMyLocationButtonEnabled(true);
         map.setMyLocationEnabled(true);
@@ -57,41 +61,12 @@ public class Toilet_Fragment extends Fragment {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 17);
         map.animateCamera(cameraUpdate);
 
-        MarkerOptions Toilet_com = new MarkerOptions();
-        Toilet_com.position(Toilet_computer);
-        Toilet_com.title("ห้องน้ำ ภาควิชาวิศวกรรมคอมพิวเตอร์");
-        Toilet_com.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_com);
-
-        MarkerOptions Toilet_chem = new MarkerOptions();
-        Toilet_chem.position(Toilet_chem1);
-        Toilet_chem.title("ห้องน้ำ ภาควิชาวิศวกรรมเคมี(ข้างร้านถ่ายเอกสาร)");
-        Toilet_chem.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_chem);
-
-        MarkerOptions Toilet_chemtwo = new MarkerOptions();
-        Toilet_chemtwo.position(Toilet_chem2);
-        Toilet_chemtwo.title("ห้องน้ำ ภาควิชาวิศวกรรมเคมี(ใต้ห้องสโม)");
-        Toilet_chemtwo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_chemtwo);
-
-        MarkerOptions Toilet_iup = new MarkerOptions();
-        Toilet_iup.position(Toilet_IUP);
-        Toilet_iup.title("ห้องน้ำ IUP");
-        Toilet_iup.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_iup);
-
-        MarkerOptions Toilet_chard = new MarkerOptions();
-        Toilet_chard.position(Toilet_chochard);
-        Toilet_chard.title("ห้องน้ำ อาคารชูชาติ");
-        Toilet_chard.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_chard);
-
-        MarkerOptions Toilet_civil = new MarkerOptions();
-        Toilet_civil.position(Toilet_Yotha);
-        Toilet_civil.title("ห้องน้ำ ภาควิชาวิศวกรรมโยธา");
-        Toilet_civil.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        map.addMarker(Toilet_civil);
+        for(int i = 0; i < name_toilet.length; i++) {
+            Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(latitude[i],longitude[i]))
+                    .title(name_toilet[i])
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            markers.add(marker);
+        }
 
         try {
             MapsInitializer.initialize(this.getActivity());
@@ -127,5 +102,116 @@ public class Toilet_Fragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        if (marker.equals(markers.get(0)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_01";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(1)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_02";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(2)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_03";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(3)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_04";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(4)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_05";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(5)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "tl_06";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
     }
 }

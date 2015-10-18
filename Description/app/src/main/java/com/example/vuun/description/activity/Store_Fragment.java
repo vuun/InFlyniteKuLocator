@@ -3,6 +3,8 @@ package com.example.vuun.description.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +17,24 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 /**
  * Created by Teevarapat on 10/7/2015.
  */
-public class Store_Fragment extends Fragment {
+public class Store_Fragment extends Fragment implements GoogleMap.OnInfoWindowClickListener{
 
     MapView mapView;
     GoogleMap map;
     LatLng position;
 
-    private final LatLng Yotha_Store = new LatLng(13.8460742, 100.5685375);
-    private final LatLng Arrow_Store = new LatLng(13.8454589, 100.5703644);
+    String[] name_store = new String[]{"ร้านเครื่องเขียน ภาควิศวกรรมโยธา", "ร้านเครื่องเขียน ลานวิศวกรรมการบิน"};
+    double[] latitude = new double[]{13.8460742, 13.8454589};
+    double[] longitude = new double[]{100.5685375, 100.5703644};
+    private ArrayList<Marker> markers = new ArrayList<Marker>();
 
     public Store_Fragment() {
 
@@ -42,6 +49,7 @@ public class Store_Fragment extends Fragment {
 
         // Gets to GoogleMap from the MapView and does initialization stuff
         map = mapView.getMap();
+        map.setOnInfoWindowClickListener(this);
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         map.getUiSettings().setMyLocationButtonEnabled(true);
         map.setMyLocationEnabled(true);
@@ -51,17 +59,12 @@ public class Store_Fragment extends Fragment {
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(position, 17);
         map.animateCamera(cameraUpdate);
 
-        MarkerOptions Civil_S = new MarkerOptions();
-        Civil_S.position(Yotha_Store);
-        Civil_S.title("ร้านเครื่องเขียน ภาควิศวกรรมโยธา");
-        Civil_S.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-        map.addMarker(Civil_S);
-
-        MarkerOptions Arrow_S = new MarkerOptions();
-        Arrow_S.position(Arrow_Store);
-        Arrow_S.title("ร้านถ่ายเอกสาร ลานวิศวกรรมการบิน");
-        Arrow_S.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-        map.addMarker(Arrow_S);
+        for(int i = 0; i < name_store.length; i++) {
+            Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(latitude[i],longitude[i]))
+                    .title(name_store[i])
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+            markers.add(marker);
+        }
 
         try {
             MapsInitializer.initialize(this.getActivity());
@@ -97,5 +100,45 @@ public class Store_Fragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        if (marker.equals(markers.get(0)))
+        {
+            //handle click here
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "st_01";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
+
+        else if (marker.equals(markers.get(1)))
+        {
+            //handle click here
+            // Fragment newFragment = new TestFragment();
+            Fragment newFragment = new DetailFragment();
+            Bundle bundle = new Bundle();
+            String place = "st_02";
+            bundle.putString("PLACE", place);
+            newFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            // and add the transaction to the back stack
+            transaction.replace(R.id.container_body, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+
+        }
     }
 }

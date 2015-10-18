@@ -17,8 +17,8 @@
 
     <string name="nav_item_all">ALL</string>
     <string name="nav_item_toilet">TOILET</string>
-    <string name="nav_item_store">STORE</string>
-    <string name="nav_item_document">DOCUMENT</string>
+    <string name="nav_item_store">STATIONARY STORE</string>
+    <string name="nav_item_document">COPY SHOP</string>
 
     <!-- navigation drawer item labels  -->
     <string-array name="nav_drawer_labels">
@@ -28,10 +28,10 @@
         <item>@string/nav_item_document</item>
     </string-array>
 
-    <string name="title_messages">STORE</string>
-    <string name="title_friends">TOILET</string>
+    <string name="title_stationary">STATIONARY STORE</string>
+    <string name="title_toilet">TOILET</string>
     <string name="title_home">ALL</string>
-    <string name="title_document">DOCCUMENT</string>
+    <string name="title_document">COPY SHOP</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
 </resources>

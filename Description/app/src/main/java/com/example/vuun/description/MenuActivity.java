@@ -98,4 +98,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivitySearch.class);
         startActivity(intent);
     }
+
+
 }

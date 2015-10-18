@@ -1,10 +1,4 @@
-package com.example.vuun.description;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+package com.example.vuun.description.activity;
 
 import com.google.gson.Gson;
 
@@ -19,44 +13,21 @@ import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
-public class DescActivity extends AppCompatActivity {
-    TextView txtDesc;
-    TextView txtPlaceName;
+/**
+ * Created by vuun on 10/18/2015.
+ */
+public class getPlace {
     class ClassTest {
         private String PlaceName;
         private String Detail;
     }
 
-    private String place_name;
-    private String detail;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_desc);
-
-        txtDesc = (TextView) findViewById(R.id.PlaceDesc);
-        txtPlaceName = (TextView) findViewById(R.id.PlaceName);
-        try {
-        getPlaceD(); }
-        catch(IOException e){
-        }
-        txtDesc.setText(place_name);
-        txtPlaceName.setText(detail);
-    }
-
-    public void sendActFav(View view)
-    {
-        // Do something in response to button
-       // go to MainActivitySearch
-        Intent intent = new Intent(this, FavActivity.class);
-        startActivity(intent);
+    public static void main(String[] arg0) throws IOException {
+        eiei();
     }
 
 
-    public void getPlaceD() throws IOException {
+    public static void eiei() throws IOException {
         Gson gson = new Gson();
         URL url = new URL("http://inzzpk.in.th/a.php");
         Map<String, String> params = new LinkedHashMap<String, String>();
@@ -76,14 +47,12 @@ public class DescActivity extends AppCompatActivity {
         output = reader.readLine();
         ClassTest obj = gson.fromJson(output, ClassTest.class);
         System.out.println(obj.PlaceName); // obj.PlaceName เก็บค่า PlaceName
-        place_name = obj.PlaceName;
         System.out.println(obj.Detail); // obj.PlaceName เก็บค่า Detail
-        detail = obj.Detail;
         writer.close();
         reader.close();
     }
 
-    public StringBuilder addParam(Map<String, String> params) throws UnsupportedEncodingException {
+    public static StringBuilder addParam(Map<String, String> params) throws UnsupportedEncodingException {
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
@@ -93,10 +62,4 @@ public class DescActivity extends AppCompatActivity {
         }
         return postData;
     }
-
-
-
 }
-//
-//
-//

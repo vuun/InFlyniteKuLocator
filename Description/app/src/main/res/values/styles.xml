@@ -6,9 +6,10 @@
         <!-- Set AppCompat’s color theming attrs -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="titleTextColor">@color/primary_text</item>
 
-        <!-- The rest of your attributes -->
     </style>
+
 
     <style name="NoTheme" parent="Theme.AppCompat.Light.NoActionBar">
 

@@ -85,15 +85,15 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
                 break;
             case 1:
                 fragment = new Toilet_Fragment();
-                title = getString(R.string.title_friends);
+                title = getString(R.string.title_toilet);
                 break;
             case 2:
                 fragment = new Store_Fragment();
-                title = getString(R.string.title_messages);
+                title = getString(R.string.title_stationary);
                 break;
             case 3:
                 fragment = new Document_Fragment();
-                title = "DOCUMENT";
+                title = getString(R.string.title_document);
             default:
                 break;
         }
