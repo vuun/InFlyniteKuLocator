@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,19 +42,15 @@ public class AccountActivity extends AppCompatActivity {
             logoutUser();
         }
 
-        String name = AppController.getString(getApplicationContext(), "name");
-        String email = AppController.getString(getApplicationContext(), "email");
+        //String name = AppController.getString(getApplicationContext(), "username");
+        //String email = AppController.getString(getApplicationContext(), "email");
+        String name = session.getUsername();
+        String email = session.getEmail();
         txtName.setText(name);
         txtEmail.setText(email);
+        Log.d("test name", "name : " + name);
 
 
-        btnFav.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                sendtoFav();
-            }
-        });
         btnLogout.setOnClickListener(new View.OnClickListener() {
 
             @Override

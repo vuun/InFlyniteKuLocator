@@ -21,6 +21,7 @@ import com.example.vuun.description.app.AppConfig;
 import com.example.vuun.description.app.AppController;
 import com.example.vuun.description.app.SessionManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -98,13 +99,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     JSONObject jObj = new JSONObject(response);
                     String userId= jObj.getString("uid");
+                    String username = jObj.getJSONObject("user").getString("name");
+                    String email = jObj.getJSONObject("user").getString("email");
                     Log.d("WHAT",userId);
                     if (userId!=null) {
                         checkLog = 0;
                         // user successfully logged in
                         // Create login session
                         session.setLogin(true);
-
+                        session.setUsername(username);
+                        session.setEmail(email);
                         // Launching  main activity
                         Intent intent = new Intent(LoginActivity.this,
                                 AccountActivity.class);
@@ -185,6 +189,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.signin_button:
                 String email = etEmailLogin.getText().toString();
                 String password = etPasswordLogin.getText().toString();
+
+                //Log.d("test name", "name : " + email);
 
                 // Check for empty data
                 if (email.trim().length() > 0 && password.trim().length() > 0) {
