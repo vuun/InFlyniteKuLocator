@@ -84,12 +84,12 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
                 title = getString(R.string.title_home);
                 break;
             case 1:
-                fragment = new Toilet_Fragment();
-                title = getString(R.string.title_toilet);
-                break;
-            case 2:
                 fragment = new Store_Fragment();
                 title = getString(R.string.title_stationary);
+                break;
+            case 2:
+                fragment = new Toilet_Fragment();
+                title = getString(R.string.title_toilet);
                 break;
             case 3:
                 fragment = new Document_Fragment();
@@ -103,6 +103,7 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_body, fragment);
             fragmentTransaction.commit();
+
 
             // set the maptoolbar title
             getSupportActionBar().setTitle(title);

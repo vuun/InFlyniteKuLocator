@@ -1,8 +1,11 @@
 package com.example.vuun.description;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,5 +59,12 @@ public class MainActivitySearch extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Toast.makeText(getApplicationContext(), "Closed Search page", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.vuun.description.FavActivity;
 import com.google.gson.Gson;
@@ -111,8 +114,8 @@ public class DetailFragment extends Fragment {
 //            getPlaceD(); }
 //        catch(IOException e){
 //        }
-        txtDesc.setText("abx");
-        txtPlaceName.setText("aaa");
+//        txtDesc.setText("abx");
+//        txtPlaceName.setText("aaa");
 
         btnFav.setOnClickListener(new View.OnClickListener() {
 
@@ -121,7 +124,6 @@ public class DetailFragment extends Fragment {
                 sendActFav(v);
             }
         });
-
         return myFragmentView;
 
     }
@@ -205,4 +207,6 @@ public class DetailFragment extends Fragment {
         }
         return postData;
     }
+
+
 }

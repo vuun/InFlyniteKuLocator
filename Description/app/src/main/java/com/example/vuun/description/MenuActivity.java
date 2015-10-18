@@ -1,13 +1,17 @@
 package com.example.vuun.description;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
 //
@@ -98,6 +102,25 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivitySearch.class);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
 
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                MenuActivity.this);
+
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        alertDialog.setNegativeButton("No", null);
+
+        alertDialog.setMessage("Do you want to exit?");
+        alertDialog.setTitle("Caution!");
+        alertDialog.show();
+    }
 
 }
