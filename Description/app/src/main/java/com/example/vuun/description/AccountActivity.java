@@ -43,8 +43,11 @@ public class AccountActivity extends AppCompatActivity {
             logoutUser();
         }
 
-        String name = AppController.getString(getApplicationContext(), "name");
-        String email = AppController.getString(getApplicationContext(), "email");
+//        String name = AppController.getString(getApplicationContext(), "name");
+//        String email = AppController.getString(getApplicationContext(), "email");
+
+        String name = session.getUsername();
+        String email = session.getEmail();
         txtName.setText(name);
         txtEmail.setText(email);
 

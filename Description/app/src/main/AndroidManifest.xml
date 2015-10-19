@@ -76,7 +76,7 @@
 
         <activity
             android:name=".FavActivity"
-            android:theme="@style/AppThemeMap"
+            android:theme="@style/AppTheme"
             android:label="@string/act_name_fav">
         </activity>
 

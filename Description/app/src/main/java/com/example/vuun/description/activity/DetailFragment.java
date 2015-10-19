@@ -2,6 +2,7 @@ package com.example.vuun.description.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -110,6 +111,7 @@ public class DetailFragment extends Fragment {
 
         txtDesc = (TextView) myFragmentView.findViewById(R.id.PlaceDesc);
         txtPlaceName = (TextView) myFragmentView.findViewById(R.id.PlaceName);
+        txtPlaceName.setTypeface(null, Typeface.BOLD);
 //        try {
 //            getPlaceD(); }
 //        catch(IOException e){
