@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,18 +19,30 @@ import android.widget.Toast;
 import com.example.vuun.description.FavActivity;
 import com.google.gson.Gson;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.vuun.description.R;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,10 +54,6 @@ import com.example.vuun.description.R;
  */
 public class DetailFragment extends Fragment {
 
-    class ClassTest {
-        private String PlaceName;
-        private String Detail;
-    }
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,13 +95,16 @@ public class DetailFragment extends Fragment {
     public DetailFragment() {
         // Required empty public constructor
     }
-
+    //private final String serverUrl = "http://www.zp9039.tld.122.155.167.199.no-domain.name/KUmap/b.php";
+    private final String serverUrl = "https://ns167.pathosting.com/phpmyadmin/index.php?db=zp9039_spoodimal&token=c6ccda6e9e8313ee5f464fdf888126e5";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = this.getArguments();
         //ID = bundle.getDouble("ID");
         place = bundle.getString("PLACE");
+        AsyncDataClass asyncRequestObject = new AsyncDataClass();
+        asyncRequestObject.execute(serverUrl,place," ");
 
 
     }
@@ -111,13 +123,8 @@ public class DetailFragment extends Fragment {
 
         txtDesc = (TextView) myFragmentView.findViewById(R.id.PlaceDesc);
         txtPlaceName = (TextView) myFragmentView.findViewById(R.id.PlaceName);
-        txtPlaceName.setTypeface(null, Typeface.BOLD);
-//        try {
-//            getPlaceD(); }
-//        catch(IOException e){
-//        }
-//        txtDesc.setText("abx");
-//        txtPlaceName.setText("aaa");
+        txtDesc.setText(detail);
+        txtPlaceName.setText(placename);
 
         btnFav.setOnClickListener(new View.OnClickListener() {
 
@@ -171,44 +178,97 @@ public class DetailFragment extends Fragment {
         getActivity().startActivity(myIntent);
     }
 
+    private class AsyncDataClass extends AsyncTask<String, Void, String> {
 
-    public void getPlaceD() throws IOException {
-        Gson gson = new Gson();
-        URL url = new URL("http://inzzpk.in.th/a.php");
-        Map<String, String> params = new LinkedHashMap<String, String>();
-        params.put("PlaceId", "tl_01"); // ส่งพารามิเตอร์แก้ตรงนี้
+        @Override
+        protected String doInBackground(String... params) {
 
-        StringBuilder postData = addParam(params);
-        String urlParameters = postData.toString();
+            HttpParams httpParameters = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpParameters, 5000);
+            HttpConnectionParams.setSoTimeout(httpParameters, 5000);
 
-        URLConnection conn = url.openConnection();
-        conn.setDoOutput(true);
-        OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-        writer.write(urlParameters);
-        writer.flush();
+            HttpClient httpClient = new DefaultHttpClient(httpParameters);
+            HttpPost httpPost = new HttpPost(params[0]);
 
-        String output;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        output = reader.readLine();
-        ClassTest obj = gson.fromJson(output, ClassTest.class);
-        System.out.println(obj.PlaceName); // obj.PlaceName เก็บค่า PlaceName
-        placename = obj.PlaceName;
-        System.out.println(obj.Detail); // obj.PlaceName เก็บค่า Detail
-        detail = obj.Detail;
-        writer.close();
-        reader.close();
-    }
+            String jsonResult = "";
+            try {
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+//                nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+                nameValuePairs.add(new BasicNameValuePair(place, params[1]));//ส่งค่า input
+//                nameValuePairs.add(new BasicNameValuePair("password", params[2]));
+                nameValuePairs.add(new BasicNameValuePair("password", params[2]));
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-    public StringBuilder addParam(Map<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+                HttpResponse response = httpClient.execute(httpPost);
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return jsonResult;
         }
-        return postData;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            System.out.println("Resulted Value: " + result);
+//            if(result.equals("") || result == null){
+//                Toast.makeText(MainActivity.this, "Server connection failed", Toast.LENGTH_LONG).show();
+//                return;
+//            }
+            String[] jsonResult = returnParsedJsonObject(result);
+            System.out.println("--------------------------------- PlaceName : " + jsonResult[0]); //ค่าอยู่ในนี้ output
+            System.out.println("--------------------------------- Detail : " + jsonResult[1]);//ค่าอยู่ในนี้ output
+            placename = jsonResult[0];
+            detail = jsonResult[1];
+//            System.out.println(jsonResult);
+//            String jsonResultStr = jsonResult
+//            if(jsonResult == 0){
+//                Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+//                return;
+//            }
+//            if(jsonResult == 1){
+//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            intent.putExtra("USERNAME","PlaceName : " + jsonResult[0] + " , Detail : " + jsonResult[1]);
+////            intent.putExtra("USERNAME","EIEI");
+//            intent.putExtra("MESSAGE", "You have been successfully login");
+//            startActivity(intent);
+////            }
+        }
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return answer;
+        }
     }
+    ////////////////////////////////////////////////////////////////////////////////////
+    private String[] returnParsedJsonObject(String result){
+
+        JSONObject resultObject = null;
+        String[] returnedResult = new String[2];
+        try {
+            resultObject = new JSONObject(result);
+            returnedResult[0] = resultObject.getString("PlaceName");
+            returnedResult[1] = resultObject.getString("Detail");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return returnedResult;
+    }
+
 
 
 }

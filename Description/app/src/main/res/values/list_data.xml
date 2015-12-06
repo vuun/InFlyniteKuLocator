@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "place">
+        <item>ห้องน้ำ วิศวกรรม คอมพิวเตอร์</item>
+        <item>ห้องน้ำ วิศวกรรม เคมี</item>
+        <item>ห้องน้ำ วิศวกรรม โยธา</item>
+        <item>ห้องน้ำ IUP</item>
+        <item>ห้องน้ำ อาคาร ชูชาติ</item>
+        <item>ร้านถ่ายเอกสาร G6</item>
+        <item>ร้านถ่ายเอกสาร ภาควิชาวิศวกรรม เคมี</item>
+        <item>ร้านถ่ายเอกสาร อาคาร 3</item>
+        <item>ร้านถ่ายเอกสาร ภาควิศวกรรม โยธา</item>
+        <item>ร้านเครื่องเขียน ลานวิศวกรรม การบิน</item>
+        <item>ร้านเครื่องเขียน ภาควิศวกรรม โยธา</item>
+    </string-array>
+</resources>

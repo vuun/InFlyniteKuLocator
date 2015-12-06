@@ -99,8 +99,8 @@ public class MenuActivity extends AppCompatActivity {
 
     /** Called when the user clicks the Send button */
     public void sendToSearch(View view) {
-        Intent intent = new Intent(this, MainActivitySearch.class);
-        startActivity(intent);
+        Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+        startActivity(i);
     }
     @Override
     public void onBackPressed() {

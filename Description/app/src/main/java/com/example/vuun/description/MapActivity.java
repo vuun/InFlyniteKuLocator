@@ -1,6 +1,8 @@
 package com.example.vuun.description;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,17 +21,26 @@ import com.example.vuun.description.activity.Document_Fragment;
 import com.example.vuun.description.activity.FragmentDrawer;
 import com.example.vuun.description.activity.Store_Fragment;
 import com.example.vuun.description.activity.Toilet_Fragment;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 public class MapActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    ShareDialog shareDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //facebook
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        shareDialog = new ShareDialog(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -59,14 +70,16 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
-//        if(id == R.id.action_search){
-//            Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
-//            return true;
-//        }
+        if(id == R.id.action_search){
+            //Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+            startActivity(i);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -116,5 +129,18 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
         Log.d("CDA", "onBackPressed Called");
         Toast.makeText(getApplicationContext(), "Go back to MainMenu", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    public void postFacebook(View view){
+
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Hello Facebook")
+                    .setContentDescription(
+                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                    .setContentUrl(Uri.EMPTY)
+                    .build();
+            shareDialog.show(linkContent);
+        }
     }
 }
