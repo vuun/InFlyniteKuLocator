@@ -1,6 +1,8 @@
 package com.example.vuun.description;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,8 +23,13 @@ import com.example.vuun.description.activity.Document_Fragment;
 import com.example.vuun.description.activity.FragmentDrawer;
 import com.example.vuun.description.activity.Store_Fragment;
 import com.example.vuun.description.activity.Toilet_Fragment;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookDialog;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
+import com.facebook.share.model.ShareOpenGraphObject;
 import com.facebook.share.widget.ShareDialog;
 
 public class MapActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
@@ -30,6 +37,7 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     ShareDialog shareDialog;
+    CallbackManager callbackManager;
 
 
     @Override
@@ -40,7 +48,9 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
 
         //facebook
         FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
+
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -70,9 +80,9 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         if(id == R.id.action_search){
             //Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
@@ -131,16 +141,40 @@ public class MapActivity extends AppCompatActivity implements FragmentDrawer.Fra
         finish();
     }
 
-    public void postFacebook(View view){
+    public void postFacebook(View view) {
+        SharedPreferences getShare = getSharedPreferences("getShare", Context.MODE_PRIVATE);
+        String getPlace = getShare.getString("sendPlace", "ERROR");
+        String getDesc = getShare.getString("sendDesc", "ERROR");
+        shareDialog = new ShareDialog(MapActivity.this);
+        ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
+                .putString("og:type", "kulocator:location")
+                .putString("og:title", getPlace)
+                .putString("og:description", getDesc).build();
 
-        if (ShareDialog.canShow(ShareLinkContent.class)) {
-            ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setContentTitle("Hello Facebook")
-                    .setContentDescription(
-                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
-                    .setContentUrl(Uri.EMPTY)
-                    .build();
-            shareDialog.show(linkContent);
-        }
+        ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
+                .setActionType("kulocator:go_to").putObject("location", object)
+                .build();
+        ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
+                .setPreviewPropertyName("location")
+                .setAction(action)
+                .build();
+        shareDialog.show(content);
+
+//        if (ShareDialog.canShow(ShareLinkContent.class)) {
+//            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+//                    .setContentTitle("Hello Facebook")
+//                    .setContentDescription(
+//                            "The 'Hello Facebook' sample  showcases simple Facebook integration")
+//                    .setContentUrl(Uri.EMPTY)
+//                    .build();
+//            shareDialog.show(linkContent);
+//
+//        }
     }
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
 }

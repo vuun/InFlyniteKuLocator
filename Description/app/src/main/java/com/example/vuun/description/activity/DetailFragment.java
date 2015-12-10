@@ -1,7 +1,9 @@
 package com.example.vuun.description.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -54,6 +56,9 @@ import com.example.vuun.description.R;
  */
 public class DetailFragment extends Fragment {
 
+    public String sendPlace;
+    public String sendDesc;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -95,16 +100,15 @@ public class DetailFragment extends Fragment {
     public DetailFragment() {
         // Required empty public constructor
     }
-    //private final String serverUrl = "http://www.zp9039.tld.122.155.167.199.no-domain.name/KUmap/b.php";
-    private final String serverUrl = "https://ns167.pathosting.com/phpmyadmin/index.php?db=zp9039_spoodimal&token=c6ccda6e9e8313ee5f464fdf888126e5";
+    private final String serverUrl = "http://www.zp9039.tld.122.155.167.199.no-domain.name/KUmap/b.php";
+    //private final String serverUrl = "https://ns167.pathosting.com/phpmyadmin/index.php?db=zp9039_spoodimal&token=c6ccda6e9e8313ee5f464fdf888126e5";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = this.getArguments();
         //ID = bundle.getDouble("ID");
         place = bundle.getString("PLACE");
-        AsyncDataClass asyncRequestObject = new AsyncDataClass();
-        asyncRequestObject.execute(serverUrl,place," ");
+
 
 
     }
@@ -121,10 +125,14 @@ public class DetailFragment extends Fragment {
         //place_place.setText(place);
         btnFav = (ImageButton) myFragmentView.findViewById(R.id.buttonfav);
 
+        AsyncDataClass asyncRequestObject = new AsyncDataClass();
+        asyncRequestObject.execute(serverUrl," "," ");
+
         txtDesc = (TextView) myFragmentView.findViewById(R.id.PlaceDesc);
         txtPlaceName = (TextView) myFragmentView.findViewById(R.id.PlaceName);
-        txtDesc.setText(detail);
-        txtPlaceName.setText(placename);
+//
+//        txtDesc.setText(detail);
+//        txtPlaceName.setText(placename);
 
         btnFav.setOnClickListener(new View.OnClickListener() {
 
@@ -194,7 +202,7 @@ public class DetailFragment extends Fragment {
             try {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 //                nameValuePairs.add(new BasicNameValuePair("username", params[1]));
-                nameValuePairs.add(new BasicNameValuePair(place, params[1]));//ส่งค่า input
+                nameValuePairs.add(new BasicNameValuePair("PlaceId", place));//ส่งค่า input
 //                nameValuePairs.add(new BasicNameValuePair("password", params[2]));
                 nameValuePairs.add(new BasicNameValuePair("password", params[2]));
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -223,8 +231,20 @@ public class DetailFragment extends Fragment {
             String[] jsonResult = returnParsedJsonObject(result);
             System.out.println("--------------------------------- PlaceName : " + jsonResult[0]); //ค่าอยู่ในนี้ output
             System.out.println("--------------------------------- Detail : " + jsonResult[1]);//ค่าอยู่ในนี้ output
+
             placename = jsonResult[0];
             detail = jsonResult[1];
+
+            SharedPreferences pref = getActivity().getSharedPreferences("getShare", 0);
+            SharedPreferences.Editor edt = pref.edit();
+            edt.putString("sendPlace", placename);
+            edt.putString("sendDesc", detail);
+            edt.commit();
+
+
+
+            txtDesc.setText(detail);
+            txtPlaceName.setText(placename);
 //            System.out.println(jsonResult);
 //            String jsonResultStr = jsonResult
 //            if(jsonResult == 0){

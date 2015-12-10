@@ -77,7 +77,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ห้องน้ำ วิศวกรรมคอมพิวเตอร์")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             markers.add(marker);
-            place = "null";
+            place = "tl_01";
         }
 
         else if(place.equals("ห้องน้ำ วิศวกรรม เคมี")) {
@@ -85,7 +85,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ห้องน้ำ วิศวกรรมเคม")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             markers.add(marker);
-            place = "null";
+            place = "tl_02";
         }
 
         else if(place.equals("ห้องน้ำ วิศวกรรม โยธา")) {
@@ -93,7 +93,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ห้องน้ำ วิศวกรรม โยธา")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             markers.add(marker);
-            place = "null";
+            place = "tl_03";
         }
 
         else if(place.equals("ห้องน้ำ IUP")) {
@@ -101,7 +101,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ห้องน้ำ IUP")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             markers.add(marker);
-            place = "null";
+            place = "tl_04";
         }
 
         else if(place.equals("ห้องน้ำ อาคารชูชาติ")) {
@@ -109,7 +109,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ห้องน้ำ อาคารชูชาติ")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
             markers.add(marker);
-            place = "null";
+            place = "tl_05";
         }
 
         else if(place.equals("ร้านถ่ายเอกสาร G6")) {
@@ -117,7 +117,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                         .title("ร้านถ่ายเอกสาร G6ิ")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 markers.add(marker);
-                place = "null";
+                place = "cp_01";
         }
 
         else if(place.equals("ร้านถ่ายเอกสาร ภาควิชาวิศวกรรม เคมี")) {
@@ -125,7 +125,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ร้านถ่ายเอกสาร ภาควิชาวิศวกรรมเคมีิ")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             markers.add(marker);
-            place = "null";
+            place = "cp_02";
         }
 
         else if(place.equals("ร้านถ่ายเอกสาร อาคาร 3")) {
@@ -133,7 +133,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ร้านถ่ายเอกสาร อาคาร 3")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             markers.add(marker);
-            place = "null";
+            place = "cp_03";
         }
 
         else if(place.equals("ร้านถ่ายเอกสาร ภาควิศวกรรม โยธา")) {
@@ -141,7 +141,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ร้านถ่ายเอกสาร ภาควิศวกรรมโยธา")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             markers.add(marker);
-            place = "null";
+            place = "cp_04";
         }
 
         else if(place.equals("ร้านเครื่องเขียน ภาควิศวกรรม โยธา")) {
@@ -149,7 +149,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ร้านเครื่องเขียน ภาควิศวกรรมโยธา")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
             markers.add(marker);
-            place = "null";
+            place = "st_01";
         }
 
         else if(place.equals("ร้านเครื่องเขียน ลานวิศวกรรม การบิน")) {
@@ -157,7 +157,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
                     .title("ร้านเครื่องเขียน ลานวิศวกรรมการบิน")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
             markers.add(marker);
-            place = "null";
+            place = "st_02";
         }
         // Inflate the layout for this fragment
         return rootView;
@@ -200,7 +200,6 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
             //handle click here
             Fragment newFragment = new DetailFragment();
             Bundle bundle = new Bundle();
-            String place = "tl_01";
             bundle.putString("PLACE", place);
             newFragment.setArguments(bundle);
 
