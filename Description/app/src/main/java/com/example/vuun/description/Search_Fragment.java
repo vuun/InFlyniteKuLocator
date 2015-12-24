@@ -80,7 +80,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
             place = "tl_01";
         }
 
-        else if(place.equals("ห้องน้ำ วิศวกรรม เคมี")) {
+        else if(place.equals("ห้องน้ำ วิศวกรรม เคมี")|| place.equals("ห้องน้ำ ชั้น1 ใต้ตึกภาคเคมี (ข้างร้านถ่ายเอกสาร)") ) {
             Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(13.8459238, 100.56988))
                     .title("ห้องน้ำ วิศวกรรมเคม")
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
@@ -112,7 +112,7 @@ public class Search_Fragment extends Fragment implements GoogleMap.OnInfoWindowC
             place = "tl_05";
         }
 
-        else if(place.equals("ร้านถ่ายเอกสาร G6")) {
+        else if(place.equals("ร้านถ่ายเอกสาร G6" ) || place.equals("ร้านถ่ายเอกสาร จี6") ) {
                 Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(13.84622585,100.5693774))
                         .title("ร้านถ่ายเอกสาร G6ิ")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));

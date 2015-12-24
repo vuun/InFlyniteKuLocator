@@ -9,17 +9,38 @@
     android:background="@drawable/whitebackground"
     android:id="@+id/DesrelativeLayout">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/g6"
-        android:layout_alignParentTop="true"
+    <!--<ImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:src="@drawable/g6"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=" "
+        android:id="@+id/PlaceName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/PlaceDesc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/PlaceName" />
 
 
     <FrameLayout
@@ -67,71 +88,71 @@
             android:id="@+id/ImageRelative"
             android:layout_gravity="center">
 
-            <ImageView
-                android:layout_width="99dp"
-                android:layout_height="93dp"
-                android:id="@+id/imageView2"
-                android:src="@drawable/g6"
-                android:layout_gravity="left|center_vertical"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:background="#00000000"
-                android:scaleType="fitXY"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="69dp" />
+            <!--<ImageView-->
+                <!--android:layout_width="99dp"-->
+                <!--android:layout_height="93dp"-->
+                <!--android:id="@+id/imageView2"-->
+                <!--android:src="@drawable/g6"-->
+                <!--android:layout_gravity="left|center_vertical"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:cropToPadding="false"-->
+                <!--android:background="#00000000"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginBottom="69dp" />-->
 
-            <ImageView
-                android:layout_width="99dp"
-                android:layout_height="93dp"
-                android:id="@+id/imageView3"
-                android:src="@drawable/g6"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:background="#00000000"
-                android:scaleType="fitXY"
-                android:layout_alignTop="@+id/imageView4"
-                android:layout_centerHorizontal="true" />
+            <!--<ImageView-->
+                <!--android:layout_width="99dp"-->
+                <!--android:layout_height="93dp"-->
+                <!--android:id="@+id/imageView3"-->
+                <!--android:src="@drawable/g6"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:cropToPadding="false"-->
+                <!--android:background="#00000000"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:layout_alignTop="@+id/imageView4"-->
+                <!--android:layout_centerHorizontal="true" />-->
 
-            <ImageView
-                android:layout_width="99dp"
-                android:layout_height="93dp"
-                android:id="@+id/imageView4"
-                android:src="@drawable/g6"
-                android:layout_gravity="right|center_vertical"
-                android:adjustViewBounds="true"
-                android:cropToPadding="false"
-                android:background="#00000000"
-                android:scaleType="fitXY"
-                android:layout_alignBottom="@+id/imageView2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+            <!--<ImageView-->
+                <!--android:layout_width="99dp"-->
+                <!--android:layout_height="93dp"-->
+                <!--android:id="@+id/imageView4"-->
+                <!--android:src="@drawable/g6"-->
+                <!--android:layout_gravity="right|center_vertical"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:cropToPadding="false"-->
+                <!--android:background="#00000000"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:layout_alignBottom="@+id/imageView2"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text=" "
-                android:id="@+id/PlaceName"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                <!--android:text=" "-->
+                <!--android:id="@+id/PlaceName"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentTop="true" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/PlaceDesc"
-                android:layout_above="@+id/imageView2"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/PlaceName" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                <!--android:id="@+id/PlaceDesc"-->
+                <!--android:layout_above="@+id/imageView2"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_below="@+id/PlaceName" />-->
 
         </RelativeLayout>
 

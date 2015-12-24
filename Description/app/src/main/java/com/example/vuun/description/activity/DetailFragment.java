@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vuun.description.FavActivity;
+import com.example.vuun.description.LoginActivity;
+import com.example.vuun.description.app.SessionManager;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
@@ -102,6 +104,10 @@ public class DetailFragment extends Fragment {
     }
     private final String serverUrl = "http://www.zp9039.tld.122.155.167.199.no-domain.name/KUmap/b.php";
     //private final String serverUrl = "https://ns167.pathosting.com/phpmyadmin/index.php?db=zp9039_spoodimal&token=c6ccda6e9e8313ee5f464fdf888126e5";
+
+
+    private SessionManager session;
+    private String email;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,8 +115,24 @@ public class DetailFragment extends Fragment {
         //ID = bundle.getDouble("ID");
         place = bundle.getString("PLACE");
 
+        AsyncDataClass asyncRequestObject = new AsyncDataClass();
+        asyncRequestObject.execute(serverUrl," "," ");
+        session = new SessionManager(getActivity().getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        //String name = session.getUsername();
+        email = session.getEmail();
+        Log.v("dcheck","email" + email);
 
 
+    }
+    private void logoutUser() {
+        session.setLogin(false);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -125,8 +147,6 @@ public class DetailFragment extends Fragment {
         //place_place.setText(place);
         btnFav = (ImageButton) myFragmentView.findViewById(R.id.buttonfav);
 
-        AsyncDataClass asyncRequestObject = new AsyncDataClass();
-        asyncRequestObject.execute(serverUrl," "," ");
 
         txtDesc = (TextView) myFragmentView.findViewById(R.id.PlaceDesc);
         txtPlaceName = (TextView) myFragmentView.findViewById(R.id.PlaceName);
@@ -177,13 +197,15 @@ public class DetailFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-
+    private final String serverUrlfav = "http://www.zp9039.tld.122.155.167.199.no-domain.name/KUmap/insertFavorite.php";
     public void sendActFav(View view)
     {
         // Do something in response to button
         // go to MainActivitySearch
-        Intent myIntent = new Intent(getActivity(), FavActivity.class);
-        getActivity().startActivity(myIntent);
+
+        AsyncDataClassFav asyncRequestObjectfav = new AsyncDataClassFav();
+        asyncRequestObjectfav.execute(serverUrlfav, " ", " ");
+        Toast.makeText(getActivity(),"Finished favorite This Location",Toast.LENGTH_LONG).show();
     }
 
     private class AsyncDataClass extends AsyncTask<String, Void, String> {
@@ -243,8 +265,8 @@ public class DetailFragment extends Fragment {
 
 
 
-            txtDesc.setText(detail);
-            txtPlaceName.setText(placename);
+            txtDesc.setText("รายละเอียดสถานที่ : \n \n" + detail +"\n");
+            txtPlaceName.setText("ชื่อสถานที่ : \n \n" + placename + "\n");
 //            System.out.println(jsonResult);
 //            String jsonResultStr = jsonResult
 //            if(jsonResult == 0){
@@ -289,6 +311,50 @@ public class DetailFragment extends Fragment {
         return returnedResult;
     }
 
+    private class AsyncDataClassFav extends AsyncTask<String, Void, String> {
 
+        @Override
+        protected String doInBackground(String... params) {
+
+            HttpParams httpParameters = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpParameters, 5000);
+            HttpConnectionParams.setSoTimeout(httpParameters, 5000);
+
+            HttpClient httpClient = new DefaultHttpClient(httpParameters);
+            HttpPost httpPost = new HttpPost(params[0]);
+
+            String jsonResult = "";
+            try {
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+//                nameValuePairs.add(new BasicNameValuePair("username", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("email", email));//ส่งค่า UserID ตรงนี้
+                nameValuePairs.add(new BasicNameValuePair("PlaceId", place));//ส่งค่า input
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                HttpResponse response = httpClient.execute(httpPost);
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return jsonResult;
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return answer;
+        }
+    }
 
 }
